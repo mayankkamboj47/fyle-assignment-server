@@ -1,0 +1,11 @@
+{
+  "engines":{
+    "node":"16.16.x"
+  },
+  "scripts": {
+    "start": "node repo_server/server.js"
+  },
+  "dependencies": {
+    "axios": "^0.27.2",
+  }
+}
