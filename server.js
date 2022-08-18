@@ -64,4 +64,6 @@ const fetch = (function(){
         })
         
     }
-)).listen(3001);
+)).listen(process.env.PORT || 3001, null, function(){
+    console.log('Listening on port', process.env.PORT || 3001);
+});
