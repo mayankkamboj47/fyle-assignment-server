@@ -22,13 +22,13 @@ const fetch = (function(){
 })();
 
 (new Server(async (req, res)=>{
-    res.setHeader('Access-Control-Allow-Origin',  'http://localhost:3000');
+    res.setHeader('Access-Control-Allow-Origin',  '*');
 
     let x;
     if(x = req.url.match(/\/size\/(.+)/)){ // if the url is /size/someusername
         // then fetch the number of repos <username> has
         res.writeHead(200, {'Content-Type' : 'application/json',
-        'Access-Control-Allow-Origin' : 'http://localhost:3000'});
+        'Access-Control-Allow-Origin' : '*'});
         fetch(x[1]).then(
             data=>res.end(JSON.stringify(data.length))
         ).catch(
@@ -52,14 +52,14 @@ const fetch = (function(){
             data=>{
                 console.log('Succeeded fetch', user);
                 res.writeHead(200, {'Content-Type' : 'application/json',
-                'Access-Control-Allow-Origin' : 'http://localhost:3000'});
+                'Access-Control-Allow-Origin' : '*'});
                 res.write(JSON.stringify(data));
                 res.end();    
             }
         ).catch((e)=>{
             console.log(e.response);
             res.writeHead( e.response?.status || 500, {'Content-Type':'application/json', 
-            'Access-Control-Allow-Origin' : 'http://localhost:3000'});
+            'Access-Control-Allow-Origin' : '*'});
             res.end(e.response?.data?.message || JSON.stringify(e));
         })
         
